@@ -3,7 +3,9 @@ import Navbar from "../components/Navbar";
 export default function Carrousel() {
   return (
     <>
+    
       <Navbar />
+      
       <div className="container mt-2">
         <h1>Carousel</h1>
         <div

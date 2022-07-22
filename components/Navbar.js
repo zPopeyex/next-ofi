@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 export default function Navbar() {
   return (
     <>
@@ -6,11 +7,12 @@ export default function Navbar() {
         <div className="collapse" id="navbarToggleExternalContent">
           <div className="bg-light p-4">
             <h5 className="text-dark h4">Categorias</h5>
-            <div className="">
-              <a href="/">inicio</a>
-              <a className="mx-2" href="/carousel">
-                Carousel
-              </a>
+            <div className="container">
+              <Link href="/">inicio</Link>
+              <hr />
+              <Link href="/carousel">Carousel</Link>
+              <hr />
+              <Link href="/tabla">Tabla</Link>
             </div>
             <hr />
             <span className="text-muted">Opciones disponibles</span>
