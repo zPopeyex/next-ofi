@@ -55,14 +55,14 @@ export default function Tabla() {
             <div className="form">
               <select
                 defaultValue={"DEFAULT"}
-                className="form-select mt-3"
+                className="form-select mt-2"
                 onChange={(e) => {
                   setlocalCity(e.target.value);
                 }}
                 style={{
                   width: "500px",
                   padding: "1%",
-                  height: "4vh",
+                  height: "6vh",
                 }}
               >
                 <option value="DEFAULT" disabled>
@@ -84,7 +84,7 @@ export default function Tabla() {
           >
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary mx-2 mt-2"
               style={{
                 width: "80px",
                 padding: "6px",
