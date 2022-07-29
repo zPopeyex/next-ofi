@@ -10,10 +10,9 @@ export default function Home() {
   const [localState, setlocalState] = useState("");
   const [localTerms, setlocalTerms] = useState("");
   const [name, setName] = useState([]);
+  const [data, setData] = useState();
 
   function handleAddButton() {
-    const check = document.querySelector("#invalidCheck").value;
-
     if (isPressed) {
       setName([
         ...name,
@@ -36,9 +35,27 @@ export default function Home() {
           terms2: localTerms,
         },
       ]);
-      console.log("False");
     }
   }
+
+  const callAPI = async () => {
+    try {
+      const res = await fetch(
+        `https://jsonplaceholder.typicode.com/comments/1`
+      );
+      const localData = await res.json();
+      console.log(1, localData);
+      setData(localData);
+      console.log(2, data);
+    } catch (err) {
+      console.log(err);
+    }
+    return {
+      props: {
+        data,
+      },
+    };
+  };
 
   return (
     <>
@@ -92,7 +109,22 @@ export default function Home() {
             aria-labelledby="nav-home-tab"
             tabIndex="0"
           >
-            <h1>Home</h1>
+            <h1>Home a</h1>
+            <button onClick={callAPI}>Llama la api</button>
+            <div className="card mt-3 mb-5" style={{ width: "400px" }}>
+              <div className="card-body">
+                <p className="card-text">
+                  <b>ID:</b> {data.id}
+                  <br />
+                  <b>Name:</b> {data.name}
+                  <br />
+                  <b>Email:</b> {data.email}
+                  <br />
+                  <b>Parrafo: </b>
+                  {data.body}
+                </p>
+              </div>
+            </div>
           </div>
           <div
             className="tab-pane fade"
