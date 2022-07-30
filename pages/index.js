@@ -10,7 +10,12 @@ export default function Home() {
   const [localState, setlocalState] = useState("");
   const [localTerms, setlocalTerms] = useState("");
   const [name, setName] = useState([]);
-  const [data, setData] = useState();
+  const [data, setData] = useState({
+    id: "",
+    name: "",
+    email: "",
+    body: "",
+  });
 
   function handleAddButton() {
     if (isPressed) {
@@ -44,17 +49,11 @@ export default function Home() {
         `https://jsonplaceholder.typicode.com/comments/1`
       );
       const localData = await res.json();
-      console.log(1, localData);
+
       setData(localData);
-      console.log(2, data);
     } catch (err) {
       console.log(err);
     }
-    return {
-      props: {
-        data,
-      },
-    };
   };
 
   return (
@@ -206,7 +205,10 @@ export default function Home() {
                         <div className="valid-feedback">Looks good!</div>
                       </div>
                       <div className="col-md-7">
-                        <label for="validationCustom02" className="form-label">
+                        <label
+                          htmlFor="validationCustom02"
+                          className="form-label"
+                        >
                           Last name
                         </label>
                         <input
@@ -223,7 +225,10 @@ export default function Home() {
                       </div>
                       <div className="col-md-4"></div>
                       <div className="col-md-6">
-                        <label for="validationCustom03" className="form-label">
+                        <label
+                          htmlFor="validationCustom03"
+                          className="form-label"
+                        >
                           City
                         </label>
                         <input
@@ -241,18 +246,22 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="col-md-5">
-                        <label for="validationCustom04" className="form-label">
+                        <label
+                          htmlFor="validationCustom04"
+                          className="form-label"
+                        >
                           State
                         </label>
                         <select
                           className="form-select"
                           id="validationCustom04"
                           required
+                          defaultValue=""
                           onChange={(e) => {
                             setlocalState(e.target.value);
                           }}
                         >
-                          <option selected disabled value="">
+                          <option disabled value="">
                             Select
                           </option>
                           <option value="Valle del Cauca">
@@ -286,7 +295,7 @@ export default function Home() {
                           ></input>
                           <label
                             className="form-check-label"
-                            for="invalidCheck"
+                            htmlFor="invalidCheck"
                           >
                             Agree to terms and conditions
                           </label>
