@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import Image from "next/image";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 
@@ -16,6 +17,7 @@ export default function Home() {
     email: "",
     body: "",
   });
+  const [datas, setDatas] = useState([]);
 
   function handleAddButton() {
     if (isPressed) {
@@ -51,6 +53,19 @@ export default function Home() {
       const localData = await res.json();
 
       setData(localData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const callGIO = async () => {
+    try {
+      const res = await fetch(
+        `https://2b00-186-116-53-211.ngrok.io/api/diana/user/get_all`
+      );
+      const localdatas = await res.json();
+      setDatas(localdatas.results);
+      console.log(localdatas.results);
     } catch (err) {
       console.log(err);
     }
@@ -109,7 +124,9 @@ export default function Home() {
             tabIndex="0"
           >
             <h1>Home a</h1>
-            <button onClick={callAPI}>Llama la api</button>
+            <button className="btn btn-primary" onClick={callAPI}>
+              Llama la api
+            </button>
             <div className="card mt-3 mb-5" style={{ width: "400px" }}>
               <div className="card-body">
                 <p className="card-text">
@@ -124,6 +141,29 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            <button className="btn btn-primary" onClick={callGIO}>
+              Call GIO
+            </button>
+            {datas?.map((info, i) => {
+              return (
+                <div key={i}>
+                  <hr></hr>
+                  <p>ID: {info.c001_rowid}</p>
+                  <p>Nombre: {info.third.c120_razon_social}</p>
+                  <p>Correo: {info.c001_correo_electronico}</p>
+                  <p>Telefono: {info.c001_numero_celular}</p>
+                  {info.third.attached_file && (
+                    <img
+                      src={
+                        "https://2b00-186-116-53-211.ngrok.io/" +
+                        info.third.attached_file?.c180_ruta
+                      }
+                    />
+                  )}
+                </div>
+              );
+            })}
+            {/* <div>{datas[0].third.c120_razon_social}</div> */}
           </div>
           <div
             className="tab-pane fade"
