@@ -141,19 +141,53 @@ export default function Home() {
                 </p>
               </div>
             </div>
+            <div>
+              <nav aria-label="Page navigation example">
+                <ul className="pagination justify-content-end">
+                  <li className="page-item disabled">
+                    <a className="page-link" href="#" tabIndex="-1">
+                      Anterior
+                    </a>
+                  </li>
+                  <li className="page-item">
+                    <a className="page-link" href="#">
+                      1
+                    </a>
+                  </li>
+                  <li className="page-item">
+                    <a className="page-link" href="#">
+                      2
+                    </a>
+                  </li>
+                  <li className="page-item">
+                    <a className="page-link" href="#">
+                      3
+                    </a>
+                  </li>
+                  <li className="page-item">
+                    <a className="page-link" href="#">
+                      Siguiente
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
             <button className="btn btn-primary" onClick={callGIO}>
               Call GIO
             </button>
             {datas?.map((info, i) => {
               return (
-                <div key={i}>
+                <div className="fs-2 " key={i}>
                   <hr></hr>
                   <p>ID: {info.c001_rowid}</p>
                   <p>Nombre: {info.third.c120_razon_social}</p>
                   <p>Correo: {info.c001_correo_electronico}</p>
                   <p>Telefono: {info.c001_numero_celular}</p>
-                  {info.third.attached_file && (
+
+                  {info.third.attached_file.c180_ruta || (
                     <img
+                      style={{ height: "500px" }}
+                      className="rounded-circle shadow-lg p-3 mb-5 bg-body rounded"
                       src={
                         "https://2b00-186-116-53-211.ngrok.io/" +
                         info.third.attached_file?.c180_ruta
