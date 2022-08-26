@@ -61,7 +61,7 @@ export default function Home() {
   const callGIO = async () => {
     try {
       const res = await fetch(
-        `https://2b00-186-116-53-211.ngrok.io/api/diana/user/get_all`
+        `https://a3e6-186-113-58-238.ngrok.io/api/diana/user/get_all`
       );
       const localdatas = await res.json();
       setDatas(localdatas.results);
@@ -184,13 +184,13 @@ export default function Home() {
                   <p>Correo: {info.c001_correo_electronico}</p>
                   <p>Telefono: {info.c001_numero_celular}</p>
 
-                  {info.third.attached_file.c180_ruta || (
+                  {info.third.attached_file?.c180_ruta && (
                     <img
                       style={{ height: "500px" }}
                       className="rounded-circle shadow-lg p-3 mb-5 bg-body rounded"
                       src={
-                        "https://2b00-186-116-53-211.ngrok.io/" +
-                        info.third.attached_file?.c180_ruta
+                        "https://a3e6-186-113-58-238.ngrok.io/" +
+                        info.third.attached_file.c180_ruta
                       }
                     />
                   )}
